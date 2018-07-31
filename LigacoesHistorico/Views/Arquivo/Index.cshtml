@@ -1,0 +1,32 @@
+﻿
+
+<!DOCTYPE html>
+   
+    <title>Envio de arquivo</title>
+
+    <div class="container">
+        <h2>Upload</h2>
+        <h3>@ViewBag.Status</h3>
+        @using (Html.BeginForm("Enviar", "Arquivo", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <fieldset>
+                <label for="photo">Insira o seu arquivo:</label><input type="file" id="photo" name="photo" class="btn btn-warning"/><br />
+                @*<input id="file" type="submit"  visible =" false"/>*@
+                <input type="submit" value="Enviar" class="btn btn-success" />
+                @Html.ActionLink("Voltar", "Index", "Home", null, new {@class= "btn btn-info" })
+            </fieldset>
+        }
+
+    </div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#file').MultiFile({
+            accept: 'txt',
+            max: 1,
+            STRING: {
+                remove: 'Remover',
+                denied: 'Tipo do arquivo inválido $ext!'
+            }
+        });
+    });
+</script>
